@@ -1,6 +1,11 @@
-from nostr.client.client import Client
-from nostr.event.event import Event
-from nostr.key import PrivateKey
+try:
+    from nostr.client.client import Client
+    from nostr.event.event import Event
+    from nostr.key import PrivateKey
+except ModuleNotFoundError as e:
+    print("Module not found: ", e)
+    print("Please ensure the 'nostr' module is installed. You can install it using 'pip install nostr'.")
+    exit(1)
 
 # Generate a new private key
 private_key = PrivateKey()
