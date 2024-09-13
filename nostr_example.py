@@ -36,7 +36,7 @@ private_key = PrivateKey()
 
 # Create a new event
 event = Event(
-    pubkey=private_key.public_key.hex(),
+    public_key=private_key.public_key.hex(),
     content="Hello, Nostr!",
     kind=1
 )
