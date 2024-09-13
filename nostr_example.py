@@ -1,5 +1,16 @@
 import sys
 import pkg_resources
+import os
+
+# Debugging: List contents of the nostr package directory
+import nostr
+nostr_path = os.path.dirname(nostr.__file__)
+print(f"Contents of the nostr package directory ({nostr_path}):")
+print(os.listdir(nostr_path))
+
+# Debugging: Print the Python path
+print("Python path:")
+print(sys.path)
 
 print("Python executable:", sys.executable)
 
