@@ -4,6 +4,7 @@ import os
 # Debugging: List contents of the nostr package directory
 import nostr
 nostr_path = os.path.dirname(nostr.__file__)
+print(f"Nostr package directory path: {nostr_path}")
 print(f"Contents of the nostr package directory ({nostr_path}):")
 print(os.listdir(nostr_path))
 
