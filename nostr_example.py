@@ -69,4 +69,7 @@ relay = Relay("ws://localhost:8080", policy, message_pool)
 
 # Open the WebSocket connection
 relay.connect()
+print("WebSocket connection opened.")
+print("Attempting to publish event...")
 relay.publish(event)
+print("Event published successfully.")
