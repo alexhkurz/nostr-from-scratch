@@ -44,8 +44,14 @@ event = Event(
 # Debugging: Inspect the Event class
 print("Event class methods:", dir(Event))
 
-# Sign the event
-event.signature = private_key.sign(event.serialize())
+# Debugging: Inspect the PrivateKey class
+print("PrivateKey class methods:", dir(PrivateKey))
+
+# Compute the event ID
+event_id = event.compute_id()
+
+# Assuming the private key has a method to sign the event ID
+event.signature = private_key.sign_id(event_id)
 
 # Connect to a relay and publish the event
 relay = Relay("ws://localhost:8080")
