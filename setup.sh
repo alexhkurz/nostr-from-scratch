@@ -9,4 +9,7 @@ source venv/bin/activate
 # Install the nostr module
 pip install nostr
 
+# Debugging: Check if nostr is installed
+pip show nostr
+
 echo "Virtual environment setup complete. 'nostr' module installed."
