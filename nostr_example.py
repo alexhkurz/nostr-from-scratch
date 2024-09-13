@@ -1,3 +1,6 @@
+import sys
+print("Python executable:", sys.executable)
+
 try:
     from nostr.client.client import Client
     from nostr.event.event import Event
