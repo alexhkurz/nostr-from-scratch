@@ -23,8 +23,8 @@ except pkg_resources.DistributionNotFound:
     exit(1)
 
 try:
-    from nostr.client.client import Client
-    from nostr.event.event import Event
+    from nostr.relay import Relay
+    from nostr.event import Event
     from nostr.key import PrivateKey
 except ModuleNotFoundError as e:
     print("Module not found: ", e)
@@ -45,5 +45,5 @@ event = Event(
 event.sign(private_key.hex())
 
 # Connect to a relay and publish the event
-client = Client("ws://localhost:8080")
-client.publish(event)
+relay = Relay("ws://localhost:8080")
+relay.publish(event)
