@@ -48,10 +48,16 @@ print("Event class methods:", dir(Event))
 print("PrivateKey class methods:", dir(PrivateKey))
 
 # Compute the event ID
-event_id = event.compute_id()
+event_id = event.compute_id(
+    public_key=event.public_key,
+    created_at=event.created_at,
+    kind=event.kind,
+    tags=event.tags,
+    content=event.content
+)
 
-# Assuming the private key has a method to sign the event ID
-event.signature = private_key.sign_id(event_id)
+# Sign the event using the private key
+event.signature = private_key.sign_event(event)
 
 # Connect to a relay and publish the event
 relay = Relay("ws://localhost:8080")
