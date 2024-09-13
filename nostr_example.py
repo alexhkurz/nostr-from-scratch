@@ -62,8 +62,11 @@ event.signature = private_key.sign_event(event)
 from nostr.message_pool import MessagePool
 from nostr.relay_manager import RelayPolicy
 
-# Connect to a relay and publish the event
+# Connect to a relay
 policy = RelayPolicy()
 message_pool = MessagePool()
 relay = Relay("ws://localhost:8080", policy, message_pool)
+
+# Open the WebSocket connection
+relay.connect()
 relay.publish(event)
