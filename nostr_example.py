@@ -102,6 +102,7 @@ else:
 
 print(Fore.GREEN + "Attempting to publish event..." + Style.RESET_ALL)
 try:
+    # Check if the WebSocket connection is open and ready for communication
     if relay.ws.sock and relay.ws.sock.connected:
         relay.publish(event)
         print(Fore.GREEN + "Event published successfully." + Style.RESET_ALL)
