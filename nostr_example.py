@@ -66,5 +66,8 @@ relay = Relay("ws://localhost:8080", policy, message_pool)
 relay.connect()
 print(Fore.GREEN + "WebSocket connection opened." + Style.RESET_ALL)
 print(Fore.GREEN + "Attempting to publish event..." + Style.RESET_ALL)
-relay.publish(event)
-print(Fore.GREEN + "Event published successfully." + Style.RESET_ALL)
+if relay.ws.sock and relay.ws.sock.connected:
+    relay.publish(event)
+    print(Fore.GREEN + "Event published successfully." + Style.RESET_ALL)
+else:
+    print(Fore.RED + "Failed to publish event: WebSocket connection is closed." + Style.RESET_ALL)
