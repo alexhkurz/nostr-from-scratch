@@ -1,0 +1,6 @@
+.aider*
+.env
+load-env.py
+venv
+.envv
+*.pyc
