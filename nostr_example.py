@@ -92,6 +92,8 @@ for attempt in range(max_retries):
     try:
         relay.connect()
         print(Fore.GREEN + "WebSocket connection opened." + Style.RESET_ALL)
+        print(f"relay.ws.sock: {relay.ws.sock}")
+        print(f"relay.ws.sock.connected: {relay.ws.sock.connected}")
         break
     except Exception as e:
         print(Fore.RED + f"Failed to open WebSocket connection (attempt {attempt + 1}/{max_retries}): {e}" + Style.RESET_ALL)
