@@ -73,7 +73,7 @@ from nostr.relay_manager import RelayPolicy
 # Connect to a relay
 policy = RelayPolicy()
 message_pool = MessagePool()
-relay = Relay("ws://localhost:8080", policy, message_pool)
+relay = Relay("ws://your_websocket_server_address:your_port", policy, message_pool)
 
 import time
 from websocket import WebSocketConnectionClosedException
