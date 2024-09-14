@@ -62,12 +62,33 @@ policy = RelayPolicy()
 message_pool = MessagePool()
 relay = Relay("ws://localhost:8080", policy, message_pool)
 
-# Open the WebSocket connection
-relay.connect()
-print(Fore.GREEN + "WebSocket connection opened." + Style.RESET_ALL)
-print(Fore.GREEN + "Attempting to publish event..." + Style.RESET_ALL)
-if relay.ws.sock and relay.ws.sock.connected:
-    relay.publish(event)
-    print(Fore.GREEN + "Event published successfully." + Style.RESET_ALL)
+import time
+from websocket import WebSocketConnectionClosedException
+
+# Open the WebSocket connection with retry logic
+max_retries = 5
+retry_delay = 2  # seconds
+
+for attempt in range(max_retries):
+    try:
+        relay.connect()
+        print(Fore.GREEN + "WebSocket connection opened." + Style.RESET_ALL)
+        break
+    except Exception as e:
+        print(Fore.RED + f"Failed to open WebSocket connection (attempt {attempt + 1}/{max_retries}): {e}" + Style.RESET_ALL)
+        time.sleep(retry_delay)
 else:
-    print(Fore.RED + "Failed to publish event: WebSocket connection is closed." + Style.RESET_ALL)
+    print(Fore.RED + "Failed to open WebSocket connection after multiple attempts." + Style.RESET_ALL)
+    exit(1)
+
+print(Fore.GREEN + "Attempting to publish event..." + Style.RESET_ALL)
+try:
+    if relay.ws.sock and relay.ws.sock.connected:
+        relay.publish(event)
+        print(Fore.GREEN + "Event published successfully." + Style.RESET_ALL)
+    else:
+        print(Fore.RED + "Failed to publish event: WebSocket connection is closed." + Style.RESET_ALL)
+except WebSocketConnectionClosedException as e:
+    print(Fore.RED + f"WebSocket connection closed unexpectedly: {e}" + Style.RESET_ALL)
+except Exception as e:
+    print(Fore.RED + f"An error occurred while publishing the event: {e}" + Style.RESET_ALL)
