@@ -54,6 +54,25 @@ event_id = event.compute_id(
 # Sign the event using the private key
 event.signature = private_key.sign_event(event)
 
+# Nostr Relays and WebSockets Explanation:
+# 
+# Nostr (Notes and Other Stuff Transmitted by Relays) is a decentralized protocol for creating and sharing content.
+# It uses relays to transmit messages between clients. Relays are servers that accept messages from clients and
+# broadcast them to other clients. This allows for a decentralized and distributed network of communication.
+#
+# WebSockets are a protocol for full-duplex communication channels over a single TCP connection. They are used in
+# Nostr to maintain a persistent connection between the client and the relay. This allows for real-time communication
+# and updates.
+#
+# In this script:
+# - We import MessagePool and RelayPolicy from the nostr module.
+# - We create a relay connection to a WebSocket server running on ws://localhost:8080.
+# - We open the WebSocket connection and attempt to publish the event.
+# - We print messages indicating the success of the connection and event publication.
+#
+# The retry logic ensures that if the connection fails, it will attempt to reconnect multiple times before giving up.
+# This helps in handling transient network issues or temporary unavailability of the relay server.
+
 from nostr.message_pool import MessagePool
 from nostr.relay_manager import RelayPolicy
 
