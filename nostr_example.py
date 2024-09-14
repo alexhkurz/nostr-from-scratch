@@ -39,9 +39,9 @@ event = Event(
 )
 
 # Debugging: Inspect the Event class
-print(Fore.GREEN + "Relay class methods:" + Style.RESET_ALL, str(dir(Relay)))
-print(Fore.GREEN + "Event class methods:" + Style.RESET_ALL, str(dir(Event)))
-print(Fore.GREEN + "PrivateKey class methods:" + Style.RESET_ALL, str(dir(PrivateKey)))
+print(Fore.GREEN + "Relay class methods:" + Style.RESET_ALL, str([method for method in dir(Relay) if not method.startswith('_')]))
+print(Fore.GREEN + "Event class methods:" + Style.RESET_ALL, str([method for method in dir(Event) if not method.startswith('_')]))
+print(Fore.GREEN + "PrivateKey class methods:" + Style.RESET_ALL, str([method for method in dir(PrivateKey) if not method.startswith('_')]))
 
 # Compute the event ID
 event_id = event.compute_id(
