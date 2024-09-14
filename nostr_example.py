@@ -108,3 +108,6 @@ except WebSocketConnectionClosedException as e:
     print(Fore.RED + f"WebSocket connection closed unexpectedly: {e}" + Style.RESET_ALL)
 except Exception as e:
     print(Fore.RED + f"An error occurred while publishing the event: {e}" + Style.RESET_ALL)
+finally:
+    relay.close()
+    print(Fore.GREEN + "WebSocket connection closed." + Style.RESET_ALL)
