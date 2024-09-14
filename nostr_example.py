@@ -9,7 +9,7 @@ nostr_path = os.path.dirname(nostr.__file__)
 
 # Debugging: List contents of the nostr package directory
 print(Fore.GREEN + f"Contents of the nostr package directory ({nostr_path}):" + Style.RESET_ALL)
-print(str(os.listdir(nostr_path)))
+print(str([item for item in os.listdir(nostr_path) if not item.startswith('_')]))
 
 # Debugging: Print the Python path
 print(Fore.GREEN + "Python path:" + Style.RESET_ALL)
