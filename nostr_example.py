@@ -7,14 +7,8 @@ from colorama import init, Fore, Style
 init()
 nostr_path = os.path.dirname(nostr.__file__)
 
-# Debugging: List contents of the nostr package directory
-print(Fore.GREEN + f"Contents of the nostr package directory ({nostr_path}):" + Style.RESET_ALL)
-print(str([item for item in os.listdir(nostr_path) if not item.startswith('_')]))
-
-# Debugging: Print the Python path
-print(Fore.GREEN + "Python path:" + Style.RESET_ALL, str([path for path in sys.path if 'venv' in path]))
-
-print(Fore.GREEN + "Python executable:" + Style.RESET_ALL, sys.executable)
+# Contents of the nostr package directory
+print(Fore.GREEN + f"Contents of the nostr package directory ({nostr_path}):" + Style.RESET_ALL, str([item for item in os.listdir(nostr_path) if not item.startswith('_')]))
 
 # https://github.com/jeffthibault/python-nostr/blob/main/nostr/relay.py
 
