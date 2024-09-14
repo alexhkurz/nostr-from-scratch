@@ -1,4 +1,5 @@
 import asyncio
+import time
 import websockets
 
 async def handler(websocket, path):
@@ -11,3 +12,6 @@ print("WebSocket server started on ws://localhost:8080")
 
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
+
+# Add a delay to ensure the server is running
+time.sleep(2)
