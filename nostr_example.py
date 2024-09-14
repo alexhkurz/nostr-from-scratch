@@ -1,6 +1,6 @@
 import sys
 import os
-import nostr
+import nostr # https://github.com/jeffthibault/python-nostr
 from colorama import init, Fore, Style
 
 # Initialize colorama
@@ -16,6 +16,8 @@ print(Fore.GREEN + "Python path:" + Style.RESET_ALL)
 print(str(sys.path))
 
 print(Fore.GREEN + "Python executable:" + Style.RESET_ALL, sys.executable)
+
+# https://github.com/jeffthibault/python-nostr/blob/main/nostr/relay.py
 
 try:
     from nostr.relay import Relay
@@ -37,9 +39,8 @@ event = Event(
 )
 
 # Debugging: Inspect the Event class
+print(Fore.GREEN + "Relay class methods:" + Style.RESET_ALL, str(dir(Relay)))
 print(Fore.GREEN + "Event class methods:" + Style.RESET_ALL, str(dir(Event)))
-
-# Debugging: Inspect the PrivateKey class
 print(Fore.GREEN + "PrivateKey class methods:" + Style.RESET_ALL, str(dir(PrivateKey)))
 
 # Compute the event ID
