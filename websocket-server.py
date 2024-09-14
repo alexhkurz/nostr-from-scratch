@@ -13,5 +13,4 @@ print("WebSocket server started on ws://localhost:8080")
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
 
-# Add a delay to ensure the server is running
-time.sleep(2)
+#  Run `lsof -i :8080` to check if the WebSocket server is running on port 8080.`
