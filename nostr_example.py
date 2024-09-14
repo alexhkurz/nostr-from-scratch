@@ -1,25 +1,29 @@
 import sys
 import os
 import nostr
+from colorama import init, Fore, Style
+
+# Initialize colorama
+init()
 nostr_path = os.path.dirname(nostr.__file__)
 
 # Debugging: List contents of the nostr package directory
-print(f"Contents of the nostr package directory ({nostr_path}):")
-print(os.listdir(nostr_path))
+print(Fore.GREEN + f"Contents of the nostr package directory ({nostr_path}):" + Style.RESET_ALL)
+print(Fore.YELLOW + str(os.listdir(nostr_path)) + Style.RESET_ALL)
 
 # Debugging: Print the Python path
-print("Python path:")
-print(sys.path)
+print(Fore.GREEN + "Python path:" + Style.RESET_ALL)
+print(Fore.YELLOW + str(sys.path) + Style.RESET_ALL)
 
-print("Python executable:", sys.executable)
+print(Fore.GREEN + "Python executable:" + Style.RESET_ALL, Fore.YELLOW + sys.executable + Style.RESET_ALL)
 
 try:
     from nostr.relay import Relay
     from nostr.event import Event
     from nostr.key import PrivateKey
 except ModuleNotFoundError as e:
-    print("Module not found: ", e)
-    print("Please ensure the 'nostr' module is installed. You can install it using 'pip install nostr'.")
+    print(Fore.RED + "Module not found: " + Style.RESET_ALL, e)
+    print(Fore.RED + "Please ensure the 'nostr' module is installed. You can install it using 'pip install nostr'." + Style.RESET_ALL)
     exit(1)
 
 # Generate a new private key
@@ -33,10 +37,10 @@ event = Event(
 )
 
 # Debugging: Inspect the Event class
-print("Event class methods:", dir(Event))
+print(Fore.GREEN + "Event class methods:" + Style.RESET_ALL, Fore.YELLOW + str(dir(Event)) + Style.RESET_ALL)
 
 # Debugging: Inspect the PrivateKey class
-print("PrivateKey class methods:", dir(PrivateKey))
+print(Fore.GREEN + "PrivateKey class methods:" + Style.RESET_ALL, Fore.YELLOW + str(dir(PrivateKey)) + Style.RESET_ALL)
 
 # Compute the event ID
 event_id = event.compute_id(
@@ -60,7 +64,7 @@ relay = Relay("ws://localhost:8080", policy, message_pool)
 
 # Open the WebSocket connection
 relay.connect()
-print("WebSocket connection opened.")
-print("Attempting to publish event...")
+print(Fore.GREEN + "WebSocket connection opened." + Style.RESET_ALL)
+print(Fore.GREEN + "Attempting to publish event..." + Style.RESET_ALL)
 relay.publish(event)
-print("Event published successfully.")
+print(Fore.GREEN + "Event published successfully." + Style.RESET_ALL)
