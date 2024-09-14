@@ -86,7 +86,7 @@ import time
 from websocket import WebSocketConnectionClosedException
 
 # Open the WebSocket connection with retry logic
-max_retries = 5
+max_retries = 1
 retry_delay = 2  # seconds
 
 for attempt in range(max_retries):
