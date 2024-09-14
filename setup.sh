@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Create a virtual environment named 'venv'
-python -m venv venv
+# Remove any existing virtual environment
+if [ -d "venv" ]; then
+    rm -rf venv
+fi
+
+# Create a new virtual environment named 'venv'
+python3 -m venv venv
 
 # Activate the virtual environment
 source venv/bin/activate
@@ -12,10 +17,9 @@ if [[ "$VIRTUAL_ENV" == "" ]]; then
     exit 1
 fi
 
-# Install the nostr module
-pip install nostr
-pip install websockets
-pip install colorama
+# Upgrade pip and install the required packages
+pip install --upgrade pip
+pip install nostr websockets colorama
 
 # Debugging: Check if nostr is installed
 
