@@ -13,7 +13,7 @@ print(str([item for item in os.listdir(nostr_path) if not item.startswith('_')])
 
 # Debugging: Print the Python path
 print(Fore.GREEN + "Python path:" + Style.RESET_ALL)
-print(str(sys.path))
+print(str([path for path in sys.path if 'venv' in path]))
 
 print(Fore.GREEN + "Python executable:" + Style.RESET_ALL, sys.executable)
 
